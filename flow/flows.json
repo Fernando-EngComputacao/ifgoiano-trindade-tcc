@@ -50,8 +50,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
-        "y": 400,
+        "x": 750,
+        "y": 100,
         "wires": [
             [
                 "ba1238c3a11f5c19"
@@ -63,8 +63,9 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "Push",
-        "func": "flow.set('iot', [{ \n    \"potencia\": {\n        \"geladeira\": { \"modo_1\": 8700, \"modo_2\": 26100, \"modo_3\": 43500 },\n        \"aquecedor\": { \"modo_1\": 1000, \"modo_2\": 1500, \"modo_3\": 2500 },\n        \"maquina-lavar\": { \"modo_1\": 8310, \"modo_2\": 12010, \"modo_3\": 15500 },\n        \"forno\": { \"modo_1\": 600, \"modo_2\": 1200, \"modo_3\": 1800 }\n    },\n    \"corrente\" :    {\n        \"geladeira\": { \"modo_1\": 39.54, \"modo_2\": 118.63, \"modo_3\": 197.93 },\n        \"aquecedor\": { \"modo_1\": 4.46, \"modo_2\": 6.82, \"modo_3\": 11.36 },\n        \"maquina-lavar\": { \"modo_1\": 39.14, \"modo_2\": 54.59, \"modo_3\": 70.45 },\n        \"forno\": { \"modo_1\": 6.32, \"modo_2\": 7.75, \"modo_3\": 8.45 }\n    },\n    \"temperatura\": {\n        \"geladeira\": { \"modo_1\": 5, \"modo_2\": 3, \"modo_3\": 2 },\n        \"aquecedor\": { \"modo_1\": 10, \"modo_2\": 15, \"modo_3\": 25 },\n        \"maquina-lavar\": { \"modo_1\": 25, \"modo_2\": 35, \"modo_3\": 45 },\n        \"forno\": { \"modo_1\": 100, \"modo_2\": 200, \"modo_3\": 250 }\n    }\n    }]);\n\nflow.set('state', [{\n    \"geladeira\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1},\n    \"aquecedor\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"maquina-lavar\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"forno\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n}]);\n\nif (typeof flow.get('alvo') !== 'undefined') {\n    // A variável \"alvo\" existe\n} else {\n    flow.set(\"alvo\", [-1, -2]);\n    // A variável \"alvo\" não existe\n}\n\nflow.set('key-status', \"falso\");\n\nflow.set('matriz_4x4', \"4x4\");\nflow.set('matriz_3x4', \"3x4\");\n\n//Estado do aquecedor [ativo, inativo]\nflow.set(\"aquecedor_estado\",true);\n\nreturn msg;",
+        "func": "flow.set('iot', [{ \n    \"potencia\": {\n        \"geladeira\": { \"modo_1\": 8700, \"modo_2\": 26100, \"modo_3\": 43500 },\n        \"aquecedor\": { \"modo_1\": 1000, \"modo_2\": 1500, \"modo_3\": 2500 },\n        \"maquina-lavar\": { \"modo_1\": 8310, \"modo_2\": 12010, \"modo_3\": 15500 },\n        \"forno\": { \"modo_1\": 600, \"modo_2\": 1200, \"modo_3\": 1800 }\n    },\n    \"corrente\" :    {\n        \"geladeira\": { \"modo_1\": 39.54, \"modo_2\": 118.63, \"modo_3\": 197.93 },\n        \"aquecedor\": { \"modo_1\": 4.46, \"modo_2\": 6.82, \"modo_3\": 11.36 },\n        \"maquina-lavar\": { \"modo_1\": 39.14, \"modo_2\": 54.59, \"modo_3\": 70.45 },\n        \"forno\": { \"modo_1\": 6.32, \"modo_2\": 7.75, \"modo_3\": 8.45 }\n    },\n    \"temperatura\": {\n        \"geladeira\": { \"modo_1\": 5, \"modo_2\": 3, \"modo_3\": 2 },\n        \"aquecedor\": { \"modo_1\": 10, \"modo_2\": 15, \"modo_3\": 25 },\n        \"maquina-lavar\": { \"modo_1\": 25, \"modo_2\": 35, \"modo_3\": 45 },\n        \"forno\": { \"modo_1\": 100, \"modo_2\": 200, \"modo_3\": 250 }\n    }\n    }]);\n\nflow.set('state', [{\n    \"geladeira\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1},\n    \"aquecedor\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"maquina-lavar\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"forno\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n}]);\n\nif (typeof flow.get('alvo') !== 'undefined') {\n    // A variável \"alvo\" existe\n} else {\n    flow.set(\"alvo\", [-1, -2]);\n    // A variável \"alvo\" não existe\n}\n\nflow.set('key-status', \"falso\");\n\nflow.set('matriz_4x4', \"4x4\");\nflow.set('matriz_3x4', \"3x4\");\n\n//Estado do aquecedor [ativo, inativo]\nflow.set(\"aquecedor_estado\",true);\n\n//Estado de msg Telegram [ativo, inativo]\nflow.set('value_msg', false);\n\n// O user proíbe ligar o ar condicionado (valor iniciado)\n    flow.set('ar_status', false);\n\n// Estado de cada equipamento\nflow.set(\"before_ar_condicionado\",0);\nflow.set(\"before_maquina\", 0);\nflow.set(\"before_geladeira\", 0);\nflow.set(\"before_forno\", 0);\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -86,11 +87,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 220,
+        "x": 250,
+        "y": 260,
         "wires": [
             [
-                "da3aa72aaf6a0888"
+                "a879a6e8a18b0bc0"
             ]
         ]
     },
@@ -113,7 +114,7 @@
         "max": "70000",
         "step": 1,
         "className": "",
-        "x": 110,
+        "x": 90,
         "y": 220,
         "wires": [
             [
@@ -132,8 +133,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 682,
-        "y": 168,
+        "x": 810,
+        "y": 240,
         "wires": [
             []
         ]
@@ -151,8 +152,8 @@
         "retentionPolicyV18Flux": "",
         "org": "IPB",
         "bucket": "Final-project",
-        "x": 678,
-        "y": 404,
+        "x": 810,
+        "y": 520,
         "wires": []
     },
     {
@@ -167,7 +168,7 @@
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "f97841978d81ced4",
@@ -191,8 +192,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 681,
-        "y": 236,
+        "x": 810,
+        "y": 320,
         "wires": [
             [
                 "0ef91ee7398297da"
@@ -206,12 +207,13 @@
         "name": "pref 2",
         "func": "var value = msg.payload[0]['fields']['aquecedor'];\nvar text = \"\" + (value != 0 ? value : \"off\");\n\n\nmsg.payload = text;\n\nreturn msg;\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 681,
-        "y": 270,
+        "x": 810,
+        "y": 360,
         "wires": [
             [
                 "e51e4228b0f9bb6d"
@@ -229,8 +231,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 681,
-        "y": 338,
+        "x": 810,
+        "y": 440,
         "wires": [
             [
                 "286e9e0f51144538"
@@ -248,8 +250,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 371,
+        "x": 810,
+        "y": 480,
         "wires": [
             [
                 "a973900f8621033a"
@@ -269,8 +271,8 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 791,
-        "y": 195,
+        "x": 930,
+        "y": 280,
         "wires": []
     },
     {
@@ -284,8 +286,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 681,
-        "y": 202,
+        "x": 810,
+        "y": 280,
         "wires": [
             [
                 "b49af9558031033d"
@@ -330,8 +332,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 799,
-        "y": 229,
+        "x": 940,
+        "y": 320,
         "wires": []
     },
     {
@@ -372,8 +374,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 821,
-        "y": 266,
+        "x": 960,
+        "y": 360,
         "wires": []
     },
     {
@@ -414,8 +416,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 844,
-        "y": 336,
+        "x": 980,
+        "y": 440,
         "wires": []
     },
     {
@@ -456,8 +458,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 792,
-        "y": 371,
+        "x": 930,
+        "y": 480,
         "wires": []
     },
     {
@@ -477,8 +479,8 @@
         "topic": "",
         "payload": "set_alvo",
         "payloadType": "flow",
-        "x": 120,
-        "y": 320,
+        "x": 100,
+        "y": 340,
         "wires": [
             [
                 "8544f51cca902c11",
@@ -492,14 +494,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "valida",
-        "func": "// Verifica o \"alvo\" para inserir na encriptação\nvar getAlvo = flow.get(\"alvo\");\nvar itens = flow.get(\"itens\");\nvar text;\n\nif (typeof msg.payload === \"number\") {\n   text = itens;\n} else {\n   if (getAlvo[0] != getAlvo[1]) {\n      flow.set(\"alvo\", [getAlvo[1], getAlvo[1]]);\n      text = itens;\n   } else {\n      text = \"invalido\";\n   }\n}\nmsg.payload = text;\nreturn msg;",
+        "func": "// Verifica o \"alvo\" para inserir na encriptação\nvar getAlvo = flow.get(\"alvo\");\nvar itens = flow.get(\"itens\");\nvar text;\n\nif (typeof msg.payload === \"number\") {\n   text = itens;\n} else {\n   if (getAlvo[0] != getAlvo[1]) {\n      flow.set(\"alvo\", [getAlvo[1], getAlvo[1]]);\n      text = itens;\n   } else {\n      text = \"invalido\";\n   }\n}\n\n// Valida se mandar msg Telegram\nlet valor_anterior = flow.get(\"before_ar_condicionado\");\nlet valor_atual = itens[0]['status']['aquecedor'];\n\nif (valor_atual !== 0 && valor_anterior === 0){\n   // ativa variável que aponta para mandar msg Telegram\n   flow.set('value_msg', true);\n   flow.set('before_ar_condicionado', valor_atual);\n}\n\nflow.set(\"before_ar_condicionado\", valor_atual);\n\nmsg.payload = text;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 320,
+        "x": 250,
+        "y": 380,
         "wires": [
             [
                 "00ec0985c31c6276"
@@ -523,8 +526,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 390,
-        "y": 320,
+        "x": 370,
+        "y": 380,
         "wires": [
             [
                 "cfaff2a6b31c097a",
@@ -544,8 +547,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 280,
-        "y": 400,
+        "x": 900,
+        "y": 100,
         "wires": []
     },
     {
@@ -615,8 +618,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 390,
-        "y": 220,
+        "x": 510,
+        "y": 240,
         "wires": [
             [
                 "43329008d242a915"
@@ -637,8 +640,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 200,
+        "x": 650,
+        "y": 220,
         "wires": [
             [
                 "270933a5d1cc06a8"
@@ -656,8 +659,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 240,
+        "x": 650,
+        "y": 260,
         "wires": [
             [
                 "270933a5d1cc06a8"
@@ -730,8 +733,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 390,
-        "y": 360,
+        "x": 370,
+        "y": 340,
         "wires": []
     },
     {
@@ -745,8 +748,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 360,
+        "x": 250,
+        "y": 340,
         "wires": [
             [
                 "6625c81514b20c7b"
@@ -848,8 +851,8 @@
                 "color": "#ff0080"
             }
         ],
-        "x": 823,
-        "y": 300,
+        "x": 960,
+        "y": 400,
         "wires": []
     },
     {
@@ -863,8 +866,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 304,
+        "x": 810,
+        "y": 400,
         "wires": [
             [
                 "bd59b91e21b43a8e"
@@ -885,9 +888,197 @@
         "correl": "",
         "expiry": "",
         "broker": "11f265ef2d209020",
-        "x": 700,
-        "y": 440,
+        "x": 540,
+        "y": 400,
         "wires": []
+    },
+    {
+        "id": "0eadf2de8cd13161",
+        "type": "telegram sender",
+        "z": "e28fa44fc2d53852",
+        "name": "Msg",
+        "bot": "22f0b17850916a08",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00c45eeb3e5475ea",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "edit",
+        "func": "msg.payload = {\n    \"type\": \"message\",\n    \"chatId\": 1226680499,\n    \"content\": \"Alexa: seu Ar-condicionado já pode ser ativado.Quer que eu o ative?\"\n}\n\n// desativa variável que aponta para mandar msg Telegram\nflow.set('value_msg',false);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "0eadf2de8cd13161"
+            ]
+        ]
+    },
+    {
+        "id": "48bce96a3f55f79a",
+        "type": "switch",
+        "z": "e28fa44fc2d53852",
+        "name": "valida",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 480,
+        "wires": [
+            [
+                "00c45eeb3e5475ea"
+            ]
+        ]
+    },
+    {
+        "id": "201af67c7f28f5cf",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "msg",
+        "func": "// msg.payload = {\n//    \"valor_anterior\": flow.get(\"before_ar_condicionado\"),\n//    \"valor_atual\": flow.get(\"itens\")[0]['status']['aquecedor'],\n//    \"state\": flow.get('value_msg')\n//}\n\nmsg.payload = flow.get('value_msg');\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 480,
+        "wires": [
+            [
+                "48bce96a3f55f79a"
+            ]
+        ]
+    },
+    {
+        "id": "3c3d6e585f287f91",
+        "type": "inject",
+        "z": "e28fa44fc2d53852",
+        "name": "st",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "6",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 480,
+        "wires": [
+            [
+                "201af67c7f28f5cf"
+            ]
+        ]
+    },
+    {
+        "id": "5b8d911670a3b62d",
+        "type": "debug",
+        "z": "e28fa44fc2d53852",
+        "name": "debug 39",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "2d5f1f666daa28f4",
+        "type": "telegram receiver",
+        "z": "e28fa44fc2d53852",
+        "name": "Receiver",
+        "bot": "22f0b17850916a08",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "9df786073a58184d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9df786073a58184d",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "function 2",
+        "func": "var text = msg.payload['content'].toUpperCase();\n\nif (text.includes(\"SIM\") || \n    !(\n        text.includes(\"NÃO\") || \n        text.includes(\"NAO\") ||\n        text.includes(\"N\") ||\n        text.includes(\"NUNCA\") ||\n        text.includes(\"JAMAIS\")\n    \n    )){\n    // O user permite ligar o ar condicionado\n    flow.set('ar_status', true);\n} else {\n    // O user proíbe ligar o ar condicionado\n    flow.set('ar_status', false);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "5b8d911670a3b62d"
+            ]
+        ]
+    },
+    {
+        "id": "a879a6e8a18b0bc0",
+        "type": "switch",
+        "z": "e28fa44fc2d53852",
+        "name": "ar",
+        "property": "ar_status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "da3aa72aaf6a0888"
+            ],
+            [
+                "246151ace8d587d3"
+            ]
+        ]
     },
     {
         "id": "11f265ef2d209020",
@@ -952,6 +1143,31 @@
         "width": "6",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "22f0b17850916a08",
+        "type": "telegram bot",
+        "botname": "ComputacaoUser_bot",
+        "usernames": "Nowuser_bot",
+        "chatids": "1226680499",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
     },
     {
         "id": "ab961a46a5f6896a",
