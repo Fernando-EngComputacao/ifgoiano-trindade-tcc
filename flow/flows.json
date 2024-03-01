@@ -28,8 +28,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 80,
+        "x": 109.2315731048584,
+        "y": 75.27990388870239,
         "wires": [
             [
                 "4b1c8e3b571a95bb"
@@ -49,11 +49,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 750,
-        "y": 100,
+        "x": 70,
+        "y": 520,
         "wires": [
             [
-                "ba1238c3a11f5c19"
+                "378ab154d9729da9",
+                "7dfbd6ecc5ba7a7b"
             ]
         ]
     },
@@ -62,15 +63,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "Push",
-        "func": "flow.set('iot', [{ \n    \"potencia\": {\n        \"geladeira\": { \"modo_1\": 8700, \"modo_2\": 26100, \"modo_3\": 43500 },\n        \"aquecedor\": { \"modo_1\": 1000, \"modo_2\": 1500, \"modo_3\": 2500 },\n        \"maquina-lavar\": { \"modo_1\": 8310, \"modo_2\": 12010, \"modo_3\": 15500 },\n        \"forno\": { \"modo_1\": 600, \"modo_2\": 1200, \"modo_3\": 1800 }\n    },\n    \"corrente\" :    {\n        \"geladeira\": { \"modo_1\": 39.54, \"modo_2\": 118.63, \"modo_3\": 197.93 },\n        \"aquecedor\": { \"modo_1\": 4.46, \"modo_2\": 6.82, \"modo_3\": 11.36 },\n        \"maquina-lavar\": { \"modo_1\": 39.14, \"modo_2\": 54.59, \"modo_3\": 70.45 },\n        \"forno\": { \"modo_1\": 6.32, \"modo_2\": 7.75, \"modo_3\": 8.45 }\n    },\n    \"temperatura\": {\n        \"geladeira\": { \"modo_1\": 5, \"modo_2\": 3, \"modo_3\": 2 },\n        \"aquecedor\": { \"modo_1\": 10, \"modo_2\": 15, \"modo_3\": 25 },\n        \"maquina-lavar\": { \"modo_1\": 25, \"modo_2\": 35, \"modo_3\": 45 },\n        \"forno\": { \"modo_1\": 100, \"modo_2\": 200, \"modo_3\": 250 }\n    }\n    }]);\n\nflow.set('state', [{\n    \"geladeira\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1},\n    \"aquecedor\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"maquina-lavar\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"forno\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n}]);\n\nif (typeof flow.get('alvo') !== 'undefined') {\n    // A variável \"alvo\" existe\n} else {\n    flow.set(\"alvo\", [-1, -2]);\n    // A variável \"alvo\" não existe\n}\n\n\nflow.set('key-status', \"falso\");\n\nflow.set('matriz_4x4', \"4x4\");\nflow.set('matriz_3x4', \"3x4\");\n\n//Estado do aquecedor [ativo, inativo]\nflow.set(\"aquecedor_estado\",true);\n\n//Estado de msg Telegram [ativo, inativo]\nflow.set('value_msg', true);\n\n// O user proíbe ligar o ar condicionado (valor iniciado)\nflow.set('ar_status', false);\n\n// Estado de cada equipamento\nflow.set(\"before_ar_condicionado\",0);\n\n// Aponta de a temp >= 25 para ativar msg Telegram\n  // 0 para não, 1 para sim\nflow.set('valor_permissao', 0);\n\n// Contador ar-condicionado\nflow.set('ar_contador',0);\n\n\nreturn msg;",
+        "func": "flow.set('iot', [{ \n    \"potencia\": {\n        \"geladeira\": { \"modo_1\": 8700, \"modo_2\": 26100, \"modo_3\": 43500 },\n        \"aquecedor\": { \"modo_1\": 1200, \"modo_2\": 2800, \"modo_3\": 3100 },\n        \"maquina-lavar\": { \"modo_1\": 8310, \"modo_2\": 12010, \"modo_3\": 15500 },\n        \"forno\": { \"modo_1\": 600, \"modo_2\": 1200, \"modo_3\": 1800 }\n    },\n    \"corrente\" :    {\n        \"geladeira\": { \"modo_1\": 39.54, \"modo_2\": 118.63, \"modo_3\": 197.93 },\n        \"aquecedor\": { \"modo_1\": 4.46, \"modo_2\": 6.82, \"modo_3\": 11.36 },\n        \"maquina-lavar\": { \"modo_1\": 39.14, \"modo_2\": 54.59, \"modo_3\": 70.45 },\n        \"forno\": { \"modo_1\": 6.32, \"modo_2\": 7.75, \"modo_3\": 8.45 }\n    },\n    \"temperatura\": {\n        \"geladeira\": { \"modo_1\": 5, \"modo_2\": 3, \"modo_3\": 2 },\n        \"aquecedor\": { \"modo_1\": 10, \"modo_2\": 15, \"modo_3\": 25 },\n        \"maquina-lavar\": { \"modo_1\": 25, \"modo_2\": 35, \"modo_3\": 45 },\n        \"forno\": { \"modo_1\": 100, \"modo_2\": 200, \"modo_3\": 250 }\n    }\n    }]);\n\nflow.set('state', [{\n    \"geladeira\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1},\n    \"aquecedor\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"maquina-lavar\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n    \"forno\": {\n        \"modo\": \"ativo\",\n        \"temp\": 1\n    },\n}]);\n\nif (typeof flow.get('alvo') !== 'undefined') {\n    // A variável \"alvo\" existe\n} else {\n    flow.set(\"alvo\", [-1, -2]);\n    // A variável \"alvo\" não existe\n}\n\n\nflow.set('key-status', \"falso\");\n\nflow.set('matriz_4x4', \"4x4\");\nflow.set('matriz_3x4', \"3x4\");\n\n//Estado do aquecedor [ativo, inativo]\nflow.set(\"aquecedor_estado\",true);\n\n//Estado de msg Telegram [ativo, inativo]\nflow.set('value_msg', true);\n\n// O user proíbe ligar o ar condicionado (valor iniciado)\nflow.set('ar_status', false);\n\n// Estado de cada equipamento\nflow.set(\"before_ar_condicionado\",0);\n\n// Aponta de a temp >= 25 para ativar msg Telegram\n  // 0 para não, 1 para sim\nflow.set('valor_permissao', 0);\n\n// Contador ar-condicionado\nflow.set('ar_contador',0);\n\n// Soma da potência de todos os eletrodométicos com base no seu modo\nflow.set('somaEletro',0.0);\n\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 80,
+        "x": 281.32825469970703,
+        "y": 75.27990913391113,
         "wires": [
             []
         ]
@@ -80,19 +81,19 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "Matriz",
-        "func": "var iot = flow.get('iot')[0]['potencia'];\nvar matriz_4x4 = [[], [], [], []];\nvar matriz_3x4 = [[], [], []];\nvar gel = []\n\n// Valor da potência no slider\nflow.set('flexa',msg.payload);\n\nfor (let x = 1;  x < 4; x++){\n    matriz_4x4[0].push(Math.ceil(iot['geladeira']['modo_' + x]));\n    matriz_4x4[1].push(Math.ceil(iot['aquecedor']['modo_' + x]));\n    matriz_4x4[2].push(Math.ceil(iot['maquina-lavar']['modo_' + x]));\n    matriz_4x4[3].push(Math.ceil(iot['forno']['modo_' + x]));\n\n    matriz_3x4[0].push(Math.ceil(iot['geladeira']['modo_' + x]));\n    matriz_3x4[1].push(Math.ceil(iot['maquina-lavar']['modo_' + x]));\n    matriz_3x4[2].push(Math.ceil(iot['forno']['modo_' + x]));\n\n}\n\nvar body_4x4 = {\n    \"matriz\": matriz_4x4,\n    \"alvo\": msg.payload\n}\n\nvar body_3x4 = {\n    \"matriz\": matriz_3x4,\n    \"alvo\": msg.payload\n}\n\n//Verifica se o ar-condicionado foi desligado\n//var ar = flow.get(\"itens\")[0]['status']['aquecedor']\n//if (ar === 0) {\n//    flow.set('value_msg', false);\n//    flow.set(\"itens\"[0]['status']['aquecedor'], 4);\n//}\n\nflow.set('matriz_4x4', body_4x4);\nflow.set('matriz_3x4',body_3x4);\nflow.set(\"set_alvo\", msg.payload);\n\nmsg.payload = body_3x4;\nreturn msg;",
+        "func": "var iot = flow.get('iot')[0]['potencia'];\nvar matriz_4x4 = [[], [], [], []];\nvar matriz_3x4 = [[], [], []];\nvar gel = []\n\n// Valor da potência no slider\nflow.set('flexa',msg.payload);\n\nfor (let x = 1;  x < 4; x++){\n    matriz_4x4[0].push(Math.ceil(iot['geladeira']['modo_' + x]));\n    matriz_4x4[1].push(Math.ceil(iot['aquecedor']['modo_' + x]));\n    matriz_4x4[2].push(Math.ceil(iot['maquina-lavar']['modo_' + x]));\n    matriz_4x4[3].push(Math.ceil(iot['forno']['modo_' + x]));\n\n    matriz_3x4[0].push(Math.ceil(iot['geladeira']['modo_' + x]));\n    matriz_3x4[1].push(Math.ceil(iot['maquina-lavar']['modo_' + x]));\n    matriz_3x4[2].push(Math.ceil(iot['forno']['modo_' + x]));\n\n}\n\nvar body_4x4 = {\n    \"matriz\": matriz_4x4,\n    \"alvo\": msg.payload\n}\n\nvar body_3x4 = {\n    \"matriz\": matriz_3x4,\n    \"alvo\": msg.payload\n}\n\n//Verifica se o ar-condicionado foi desligado\n//var ar = flow.get(\"itens\")[0]['status']['aquecedor']\n//if (ar === 0) {\n//    flow.set('value_msg', false);\n//    flow.set(\"itens\"[0]['status']['aquecedor'], 4);\n//}\n\nflow.set('matriz_4x4', body_4x4);\nflow.set('matriz_3x4',body_3x4);\nflow.set(\"set_alvo\", msg.payload);\n\nmsg.payload = flow.get('ar_status');\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 260,
+        "x": 286.0213088989258,
+        "y": 217.91684436798096,
         "wires": [
             [
                 "a879a6e8a18b0bc0",
-                "a788eefcc9d97ebb"
+                "52d3bf8e2396665e"
             ]
         ]
     },
@@ -115,8 +116,8 @@
         "max": "70000",
         "step": 1,
         "className": "",
-        "x": 90,
-        "y": 220,
+        "x": 92.98062896728516,
+        "y": 218.5096950531006,
         "wires": [
             [
                 "3fa300e113ee0e5c"
@@ -128,19 +129,17 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "Def",
-        "func": "var matriz = msg.payload['matriz'];\nvar alvo = msg.payload['alvo'];\n\n// Insere o alvo atual na variável de flow \"alvo\"\nvar textValue = flow.get(\"alvo\");\ntextValue[1] = alvo;\nflow.set(\"alvo\",[textValue[0],textValue[1]]);\n\n// var alvo = Math.floor(Math.random() * (420 - 1 + 1)) + 1;\n// var alvo = 237;\n\nfunction funcao(matriz, valores, alvo, indice = 0, cbn = [], size = (tmhMatriz == 4 ? 4 : 3)) {\n    alvo = Math.floor(alvo);\n    //console.log(\"Anterior -> \"+anterior);\n    if (size == null || size == 0 || alvo <= 0) {\n        return null;\n    } if (inicio == true) {\n        inicio = false;\n        for (let x = 0; x < 3; x++) {\n            if (tmhMatriz == 4) {\n                modos[matriz[0][x] + ''] = [x, -1, -1, -1];\n                modos[matriz[1][x] + ''] = [-1, x, -1, -1];\n                modos[matriz[2][x] + ''] = [-1, -1, x, -1];\n                modos[matriz[3][x] + ''] = [-1, -1, -1, x];\n            } else {\n                modos[matriz[0][x] + ''] = [x, -1, -1];\n                modos[matriz[1][x] + ''] = [-1, x, -1];\n                modos[matriz[2][x] + ''] = [-1, -1, x];\n            }\n        }\n    } if (size == 4) {\n        const posicao1 = matriz[0].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        const posicao2 = matriz[1].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        const posicao3 = matriz[2].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n\n        if (tmhMatriz == 4) {\n            const posicao4 = matriz[3].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        }\n\n        //console.log(\"size [\"+size+\"] == 4\");\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]] + matriz[2][cbn[2]] + matriz[3][cbn[3]];\n        if (indice === valores.length) {\n            cbn[3] = (typeof cbn[3] === 'undefined' ? -1 : cbn[3]);\n            modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], cbn[3]]);\n            if ((cbn[0] === 0) && (cbn[1] === 0) && (cbn[2] === 0) && (cbn[3] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2, 2, 2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn);\n            cbn.pop();\n        }\n\n\n\n    } else if (size == 3) {\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]] + matriz[2][cbn[2]];\n        if (indice === valores.length) {\n            //var test = (typeof cbn[0] != 'undefined' ? (typeof cbn[1] != 'undefined' ? typeof cbn[3] === 'undefined': \"Undefined**\") : cbn[3]);\n            //(typeof cbn[3] === 'undefined' ? console.log(\"** undefined **\") : cbn[2]);\n            //console.log(test)\n            if (tmhMatriz == 4) {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], -1]);\n            } else {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2]]);\n            }\n            if ((cbn[0] === 0) && (cbn[1] === 0) && (cbn[2] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2, 2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn, size);\n            cbn.pop();\n        }\n    } else if (size == 2) {\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]];\n        if (indice === valores.length) {\n            cbn[2] = (typeof cbn[2] === 'undefined' ? -1 : cbn[2]);\n            if (tmhMatriz == 4) {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], -1]);\n            } else {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2]]);\n            }\n\n\n            if ((cbn[0] === 0) && (cbn[1] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn, size);\n            cbn.pop();\n        }\n\n    } else {\n        return null;\n    }\n}\n\n\nfunction apresenta() {\n    console.log(equipamento);\n}\n\n// var matriz = [\n//     [40, 119, 198],\n//     [5,7,12],\n//     [40, 55, 71],\n//     [7, 8, 9]];\n\nvar equipamento = [];\nvar modos = {};\nvar tmhMatriz = matriz.length;\nif (tmhMatriz == 4) {\n    var indices = [2, 2, 2, 2];\n} else {\n    var indices = [2, 2, 2];\n}\n\nvar inicio = true;\n\n//funcao(matriz, indice = 0, cbn = [], size) \nfuncao(matriz, indices, alvo);\n\n// msg.payload = modos;\nvar list = Object.keys(modos).map(key => parseInt(key));\n\n\n// Encontra o valor igual ou próximo ao objetivo\nlet valorMaisProximo = list[0]; // Definimos o primeiro elemento como o mais próximo inicialmente\nlet diferencaMaisProxima = Math.abs(alvo - list[0]); // Calculamos a diferença inicialmente\n\nfor (let i = 1; i < list.length; i++) {\n    const diferenca = Math.abs(alvo - list[i]);\n    if (diferenca < diferencaMaisProxima) {\n        diferencaMaisProxima = diferenca;\n        valorMaisProximo = list[i];\n    }\n}\n////////////////////////////////////////////////\n// Encontra no valor X (alvo) os modos (in)ativos\nvar modoFinal = modos[valorMaisProximo+''];\n\n// Valores dos modos para cada equipamento\n\nvar modo_geladeira = modoFinal[0] + 1;\nvar modo_aquecedor = (tmhMatriz == 4 ? modoFinal[1] + 1 : 0);\nvar modo_maquina = (tmhMatriz == 4 ? modoFinal[2] + 1 : modoFinal[1] + 1);\nvar modo_forno = (tmhMatriz == 4  ? modoFinal[3] + 1 : modoFinal[2] + 1);\n\nvar eletrodomesticos = [{\n     \n    \"status\":{\n        \"geladeira\": modo_geladeira,\n        \"aquecedor\": modo_aquecedor,\n        \"maquina\": modo_maquina,\n        \"forno\": modo_forno\n    },\n    \"value\": alvo\n}];\n//////////////////////////\n// Indica (1) a permissao msg Telegram, (0) a negativa\nvar temp = flow.get(\"braganca_temp\");\nvar ar_status = flow.get('ar_status');\nvar ar_contador = flow.get('ar_contador');\nvar value_msg = flow.get('value_msg');\nvar valor_permissao = flow.get('valor_permissao');\nvar iot = flow.get('iot')[0]['potencia'];\nvar soma = iot['geladeira']['modo_1'] + iot['aquecedor']['modo_1'];\nvar flexa = flow.get('flexa');\nflow.set('ar_estado', modo_aquecedor);\n\nif (temp >= 25  && modo_aquecedor === 0 && \n    ar_contador === 0 && (flexa >= soma)){\n    flow.set('valor_permissao', 1);\n}\n\nmsg.payload = { \n    \"temp\": temp,\n    \"modo_ar\": modo_aquecedor,\n    \"ar_contador\": ar_contador,\n    \"ar_status\": ar_status,\n    \"flexa\": (flexa >= soma),\n    \"flexa_value\": flexa,\n    \"valor_permissao\": flow.get('valor_permissao'),\n    \"resultado\": (temp >= 25 && modo_aquecedor === 0 &&  ar_contador === 0 && (flexa >= soma))\n};\n\n\n\n//////////////////////////\n//msg.payload = eletrodomesticos;\n\n// \"itens\" contém todos os eletrodométicos com seus modos finais\nflow.set('itens', eletrodomesticos);\nvar getAlvo = flow.get(\"alvo\");\n\n// Verifica o \"alvo\" para inserir na encriptação\n// if (getAlvo != alvo){\n//     flow.set('alvo',alvo);\n// }\n\n// msg.payload = eletrodomesticos;\nreturn msg;",
+        "func": "var matriz = msg.payload['matriz'];\nvar alvo = msg.payload['alvo'];\nconst testeO = matriz;\n// Insere o alvo atual na variável de flow \"alvo\"\nvar textValue = flow.get(\"alvo\");\ntextValue[1] = alvo;\nflow.set(\"alvo\",[textValue[0],textValue[1]]);\n\n// var alvo = Math.floor(Math.random() * (420 - 1 + 1)) + 1;\n// var alvo = 237;\n\nfunction funcao(matriz, valores, alvo, indice = 0, cbn = [], size = (tmhMatriz == 4 ? 4 : 3)) {\n    alvo = Math.floor(alvo);\n    //console.log(\"Anterior -> \"+anterior);\n    if (size == null || size == 0 || alvo <= 0) {\n        return null;\n    } if (inicio == true) {\n        inicio = false;\n        for (let x = 0; x < 3; x++) {\n            if (tmhMatriz == 4) {\n                modos[matriz[0][x] + ''] = [x, -1, -1, -1];\n                modos[matriz[1][x] + ''] = [-1, x, -1, -1];\n                modos[matriz[2][x] + ''] = [-1, -1, x, -1];\n                modos[matriz[3][x] + ''] = [-1, -1, -1, x];\n            } else {\n                modos[matriz[0][x] + ''] = [x, -1, -1];\n                modos[matriz[1][x] + ''] = [-1, x, -1];\n                modos[matriz[2][x] + ''] = [-1, -1, x];\n            }\n        }\n    } if (size == 4) {\n        const posicao1 = matriz[0].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        const posicao2 = matriz[1].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        const posicao3 = matriz[2].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n\n        if (tmhMatriz == 4) {\n            const posicao4 = matriz[3].reduce((maior, elemento) => { if (elemento > maior) { return elemento; } return maior; });\n        }\n\n        //console.log(\"size [\"+size+\"] == 4\");\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]] + matriz[2][cbn[2]] + matriz[3][cbn[3]];\n        if (indice === valores.length) {\n            cbn[3] = (typeof cbn[3] === 'undefined' ? -1 : cbn[3]);\n            modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], cbn[3]]);\n            if ((cbn[0] === 0) && (cbn[1] === 0) && (cbn[2] === 0) && (cbn[3] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2, 2, 2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn);\n            cbn.pop();\n        }\n\n\n\n    } else if (size == 3) {\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]] + matriz[2][cbn[2]];\n        if (indice === valores.length) {\n            //var test = (typeof cbn[0] != 'undefined' ? (typeof cbn[1] != 'undefined' ? typeof cbn[3] === 'undefined': \"Undefined**\") : cbn[3]);\n            //(typeof cbn[3] === 'undefined' ? console.log(\"** undefined **\") : cbn[2]);\n            //console.log(test)\n            if (tmhMatriz == 4) {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], -1]);\n            } else {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2]]);\n            }\n            if ((cbn[0] === 0) && (cbn[1] === 0) && (cbn[2] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2, 2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn, size);\n            cbn.pop();\n        }\n    } else if (size == 2) {\n        var compara = matriz[0][cbn[0]] + matriz[1][cbn[1]];\n        if (indice === valores.length) {\n            cbn[2] = (typeof cbn[2] === 'undefined' ? -1 : cbn[2]);\n            if (tmhMatriz == 4) {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2], -1]);\n            } else {\n                modos[compara + \"\"] = ([cbn[0], cbn[1], cbn[2]]);\n            }\n\n\n            if ((cbn[0] === 0) && (cbn[1] === 0)) {\n                matriz.pop();\n                funcao(matriz, [2], alvo, indice = 0, cbn = [], size - 1);\n            }\n            return;\n        }\n\n        for (let i = valores[indice]; i >= 0; i--) {\n            cbn.push(i);\n            funcao(matriz, [...valores], alvo, indice + 1, cbn, size);\n            cbn.pop();\n        }\n\n    } else {\n        return null;\n    }\n}\n\n\nfunction apresenta() {\n    console.log(equipamento);\n}\n\n// var matriz = [\n//     [40, 119, 198],\n//     [5,7,12],\n//     [40, 55, 71],\n//     [7, 8, 9]];\n\nvar equipamento = [];\nvar modos = {};\nvar tmhMatriz = matriz.length;\nif (tmhMatriz == 4) {\n    var indices = [2, 2, 2, 2];\n} else {\n    var indices = [2, 2, 2];\n}\n\nvar inicio = true;\n\n//funcao(matriz, indice = 0, cbn = [], size) \nfuncao(matriz, indices, alvo);\n\n// msg.payload = modos;\nvar list = Object.keys(modos).map(key => parseInt(key));\n\n\n// Encontra o valor igual ou próximo ao objetivo\nlet valorMaisProximo = list[0]; // Definimos o primeiro elemento como o mais próximo inicialmente\nlet diferencaMaisProxima = Math.abs(alvo - list[0]); // Calculamos a diferença inicialmente\n\nfor (let i = 1; i < list.length; i++) {\n    const diferenca = Math.abs(alvo - list[i]);\n    if (diferenca < diferencaMaisProxima) {\n        diferencaMaisProxima = diferenca;\n        valorMaisProximo = list[i];\n    }\n}\n////////////////////////////////////////////////\n// Encontra no valor X (alvo) os modos (in)ativos\nvar modoFinal = modos[valorMaisProximo+''];\n\n// Valores dos modos para cada equipamento\n\nvar modo_geladeira = modoFinal[0] + 1;\nvar modo_aquecedor = (tmhMatriz == 4 ? modoFinal[1] + 1 : 0);\nvar modo_maquina = (tmhMatriz == 4 ? modoFinal[2] + 1 : modoFinal[1] + 1);\nvar modo_forno = (tmhMatriz == 4  ? modoFinal[3] + 1 : modoFinal[2] + 1);\n\nvar eletrodomesticos = [{\n     \n    \"status\":{\n        \"geladeira\": modo_geladeira,\n        \"aquecedor\": modo_aquecedor,\n        \"maquina\": modo_maquina,\n        \"forno\": modo_forno\n    },\n    \"value\": alvo\n}];\n//////////////////////////\n// Indica (1) a permissao msg Telegram, (0) a negativa\nvar temp = flow.get(\"braganca_temp\");\nvar ar_status = flow.get('ar_status');\nvar ar_contador = flow.get('ar_contador');\nvar value_msg = flow.get('value_msg');\nvar valor_permissao = flow.get('valor_permissao');\nvar iot = flow.get('iot')[0]['potencia'];\nvar soma = iot['geladeira']['modo_1'] + iot['aquecedor']['modo_1'];\nvar flexa = flow.get('flexa');\nflow.set('ar_estado', modo_aquecedor);\n\nif (temp >= 25  && modo_aquecedor === 0 && \n    ar_contador === 0 && (flexa >= soma)){\n    flow.set('valor_permissao', 1);\n}\n\nmsg.payload = { \n    \"temp\": temp,\n    \"modo_ar\": modo_aquecedor,\n    \"ar_contador\": ar_contador,\n    \"ar_status\": ar_status,\n    \"flexa\": (flexa >= soma),\n    \"flexa_value\": flexa,\n    \"valor_permissao\": flow.get('valor_permissao'),\n    \"resultado\": (temp >= 25 && modo_aquecedor === 0 &&  ar_contador === 0 && (flexa >= soma))\n};\n\n\n\n//////////////////////////\n//msg.payload = eletrodomesticos;\n\n// \"itens\" contém todos os eletrodométicos com seus modos finais\nflow.set('itens', eletrodomesticos);\nvar getAlvo = flow.get(\"alvo\");\n\n// Verifica o \"alvo\" para inserir na encriptação\n// if (getAlvo != alvo){\n//     flow.set('alvo',alvo);\n// }\n\n// msg.payload = eletrodomesticos;\nmsg.payload = testeO;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 240,
+        "x": 732.9806289672852,
+        "y": 258.5096950531006,
         "wires": [
-            [
-                "97f05a0b0f44933c"
-            ]
+            []
         ]
     },
     {
@@ -156,8 +155,8 @@
         "retentionPolicyV18Flux": "",
         "org": "IPB",
         "bucket": "Final-project",
-        "x": 810,
-        "y": 520,
+        "x": 732.9806289672852,
+        "y": 538.5096950531006,
         "wires": []
     },
     {
@@ -165,15 +164,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "send",
-        "func": "var objeto = msg.payload[0];\nvar temp = parseFloat(flow.get(\"braganca_temp\"));\n\nmsg.payload = [\n    {\n        measurement: \"Eletric-Project\",\n        fields: {\n            potencia: objeto['value'],\n            geladeira: (objeto['status']['geladeira'] == null ? 0 : objeto['status']['geladeira']),\n            aquecedor: (objeto['status']['aquecedor'] == null ? 0 : objeto['status']['aquecedor']),\n            maquina: (objeto['status']['maquina'] == null ? 0 : objeto['status']['maquina']),\n            forno: (objeto['status']['forno'] == null ? 0 : objeto['status']['forno']),\n            temperatura: temp,\n\n        },\n        tags: {\n            sendorID: 1,\n            location: \"Inside house\"\n        }\n    }\n];\n\nreturn msg;",
+        "func": "var objeto = msg.payload[0];\nvar temp = parseFloat(flow.get(\"braganca_temp\"));\n\n// Valida se o valor do ar é zero \"0\"\nvar valueArCondicionado = objeto['status']['aquecedor'];\nflow.set('valueAr', valueArCondicionado);\n\nmsg.payload = [\n    {\n        measurement: \"Eletric-Project\",\n        fields: {\n            potencia: objeto['value'],\n            geladeira: (objeto['status']['geladeira'] == null ? 0 : objeto['status']['geladeira']),\n            aquecedor: (objeto['status']['aquecedor'] == null ? 0 : objeto['status']['aquecedor']),\n            maquina: (objeto['status']['maquina'] == null ? 0 : objeto['status']['maquina']),\n            forno: (objeto['status']['forno'] == null ? 0 : objeto['status']['forno']),\n            temperatura: temp,\n\n        },\n        tags: {\n            sendorID: 1,\n            location: \"Inside house\"\n        }\n    }\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 360,
+        "x": 532.9806289672852,
+        "y": 338.5096950531006,
         "wires": [
             [
                 "f97841978d81ced4",
@@ -182,7 +181,8 @@
                 "4b81e32ec93d5948",
                 "7ed5e6b24ce0ee3c",
                 "1411612cb7dcb0af",
-                "96ef09fa6b244d64"
+                "96ef09fa6b244d64",
+                "c7cb60dc37b4c4ce"
             ]
         ]
     },
@@ -197,8 +197,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 320,
+        "x": 732.9806289672852,
+        "y": 338.5096950531006,
         "wires": [
             [
                 "0ef91ee7398297da"
@@ -217,8 +217,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 360,
+        "x": 732.9806289672852,
+        "y": 378.5096950531006,
         "wires": [
             [
                 "e51e4228b0f9bb6d"
@@ -236,8 +236,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 440,
+        "x": 732.9806289672852,
+        "y": 458.5096950531006,
         "wires": [
             [
                 "286e9e0f51144538"
@@ -255,8 +255,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 480,
+        "x": 732.9806289672852,
+        "y": 498.5096950531006,
         "wires": [
             [
                 "a973900f8621033a"
@@ -276,8 +276,12 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 930,
-        "y": 280,
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 852.9806289672852,
+        "y": 298.5096950531006,
         "wires": []
     },
     {
@@ -285,15 +289,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "value",
-        "func": "var value = msg.payload[0]['fields']['corrente'];\nmsg.payload = value;\nreturn msg;",
+        "func": "//var value = msg.payload[0]['fields']['corrente'];\n//msg.payload = value;\nmsg.payload = flow.get('flexa')\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 280,
+        "x": 732.9806289672852,
+        "y": 298.5096950531006,
         "wires": [
             [
                 "b49af9558031033d"
@@ -338,8 +342,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 940,
-        "y": 320,
+        "x": 862.9806289672852,
+        "y": 338.5096950531006,
         "wires": []
     },
     {
@@ -380,8 +384,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 960,
-        "y": 360,
+        "x": 882.9806289672852,
+        "y": 378.5096950531006,
         "wires": []
     },
     {
@@ -422,20 +426,20 @@
                 "color": "#009999"
             }
         ],
-        "x": 980,
-        "y": 440,
+        "x": 902.9806289672852,
+        "y": 458.5096950531006,
         "wires": []
     },
     {
         "id": "a973900f8621033a",
         "type": "ui_input",
         "z": "e28fa44fc2d53852",
-        "name": "",
+        "name": "Forno Elétrico",
         "group": "f8a00c8814859c8e",
         "order": 2,
         "width": 6,
         "height": 1,
-        "label": "Forno",
+        "label": "Forno Elétrico",
         "stateField": "payload",
         "useThemeColors": true,
         "options": [
@@ -464,8 +468,8 @@
                 "color": "#009999"
             }
         ],
-        "x": 930,
-        "y": 480,
+        "x": 882.9806289672852,
+        "y": 498.5096950531006,
         "wires": []
     },
     {
@@ -478,15 +482,15 @@
                 "p": "payload"
             }
         ],
-        "repeat": "6",
+        "repeat": "2",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "set_alvo",
         "payloadType": "flow",
-        "x": 100,
-        "y": 340,
+        "x": 102.98062896728516,
+        "y": 278.5096950531006,
         "wires": [
             [
                 "8544f51cca902c11",
@@ -507,8 +511,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 380,
+        "x": 292.98062896728516,
+        "y": 338.5096950531006,
         "wires": [
             [
                 "00ec0985c31c6276"
@@ -532,8 +536,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 370,
-        "y": 380,
+        "x": 412.98062896728516,
+        "y": 338.5096950531006,
         "wires": [
             [
                 "cfaff2a6b31c097a",
@@ -542,26 +546,10 @@
         ]
     },
     {
-        "id": "ba1238c3a11f5c19",
-        "type": "debug",
-        "z": "e28fa44fc2d53852",
-        "name": "debug 36",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 900,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "347c8e532abdf192",
         "type": "http request",
         "z": "e28fa44fc2d53852",
-        "name": "Trindade-GO",
+        "name": "Temp",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -573,7 +561,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 290,
+        "x": 280.3842010498047,
         "y": 120,
         "wires": [
             [
@@ -593,7 +581,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
+        "x": 410,
         "y": 120,
         "wires": [
             [
@@ -623,8 +611,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 510,
-        "y": 240,
+        "x": 530,
+        "y": 180,
         "wires": [
             [
                 "43329008d242a915"
@@ -646,11 +634,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 220,
+        "x": 655.2183647155762,
+        "y": 175.18537712097168,
         "wires": [
             [
-                "270933a5d1cc06a8"
+                "270933a5d1cc06a8",
+                "666aa639be7611cd"
             ]
         ]
     },
@@ -666,7 +655,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
+        "x": 590,
         "y": 260,
         "wires": [
             [
@@ -713,7 +702,7 @@
         "label": "°C",
         "format": "{{value}}",
         "min": 0,
-        "max": "50",
+        "max": "35",
         "colors": [
             "#00ffff",
             "#ffff80",
@@ -723,8 +712,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 370,
-        "y": 340,
+        "x": 412.98062896728516,
+        "y": 278.5096950531006,
         "wires": []
     },
     {
@@ -738,8 +727,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 340,
+        "x": 289.79740142822266,
+        "y": 277.14841651916504,
         "wires": [
             [
                 "6625c81514b20c7b"
@@ -790,8 +779,8 @@
         "libs": [],
         "repeat": "5",
         "repeatUnit": "1000",
-        "x": 350,
-        "y": 160,
+        "x": 122.49125671386719,
+        "y": 166.6081371307373,
         "wires": [
             [
                 "9c3a0c4ef0f15d1b"
@@ -810,8 +799,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 160,
+        "x": 292.4912567138672,
+        "y": 166.6081371307373,
         "wires": [
             []
         ]
@@ -842,8 +831,8 @@
                 "color": "#ff0080"
             }
         ],
-        "x": 960,
-        "y": 400,
+        "x": 882.9806289672852,
+        "y": 418.5096950531006,
         "wires": []
     },
     {
@@ -851,14 +840,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "pref_2",
-        "func": "msg.payload = flow.get(\"aquecedor_estado\");\n\nreturn msg;",
+        "func": "var status = flow.get(\"aquecedor_estado\");\n\nif (msg.payload['0']['fields']['aquecedor'] == false) {\n    status = false;\n}\n\nmsg.payload = status;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 400,
+        "x": 732.9806289672852,
+        "y": 418.5096950531006,
         "wires": [
             [
                 "bd59b91e21b43a8e"
@@ -879,8 +869,8 @@
         "correl": "",
         "expiry": "",
         "broker": "11f265ef2d209020",
-        "x": 540,
-        "y": 400,
+        "x": 542.9806289672852,
+        "y": 398.5096950531006,
         "wires": []
     },
     {
@@ -891,8 +881,8 @@
         "bot": "22f0b17850916a08",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 590,
-        "y": 480,
+        "x": 530,
+        "y": 500,
         "wires": [
             []
         ]
@@ -909,8 +899,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 480,
+        "x": 530,
+        "y": 460,
         "wires": [
             [
                 "0eadf2de8cd13161"
@@ -932,8 +922,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 330,
-        "y": 480,
+        "x": 290,
+        "y": 440,
         "wires": [
             [
                 "00c45eeb3e5475ea"
@@ -945,15 +935,15 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "msg",
-        "func": "// msg.payload = {\n//    \"valor_anterior\": flow.get(\"before_ar_condicionado\"),\n//    \"valor_atual\": flow.get(\"itens\")[0]['status']['aquecedor'],\n//    \"state\": flow.get('value_msg')\n//}\nvar valor_permissao = flow.get('valor_permissao');\nvar value_msg = flow.get('value_msg');\nvar ar_status = flow.get('ar_status');\n\n//if (value_msg == true && ar_status == false && valor_permissao === 1) {\nif (valor_permissao === 1){\n    flow.set('valor_permissao', 0);\n    flow.set('ar_contador',1);\n    //flow.set('value_msg',false);\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\n\nreturn msg;",
+        "func": "// msg.payload = {\n//    \"valor_anterior\": flow.get(\"before_ar_condicionado\"),\n//    \"valor_atual\": flow.get(\"itens\")[0]['status']['aquecedor'],\n//    \"state\": flow.get('value_msg')\n//}\nvar arCondicionadoValor = flow.get('iot')['0']['potencia']['aquecedor']['modo_1'];\nvar somaEletro = flow.get('somaEletro');\nvar flexa = flow.get('flexa');\nvar valor_permissao = flow.get('valor_permissao');\nvar value_msg = flow.get('value_msg');\nvar ar_status = flow.get('ar_status');\nvar ar_valor = flow.get('ar_estado');\n\nvar somaDecisao = ((flexa - somaEletro) - arCondicionadoValor);\n\n//if (value_msg == true && ar_status == false && valor_permissao === 1) {\nif (valor_permissao === 1 && ar_valor === 0 && somaDecisao >=0 ){\n    flow.set('valor_permissao', 0);\n    flow.set('ar_contador',1);\n    //flow.set('value_msg',false);\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 210,
-        "y": 480,
+        "x": 290,
+        "y": 400,
         "wires": [
             [
                 "48bce96a3f55f79a"
@@ -974,7 +964,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "6",
+        "repeat": "2",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -982,29 +972,12 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 480,
+        "y": 340,
         "wires": [
             [
                 "201af67c7f28f5cf"
             ]
         ]
-    },
-    {
-        "id": "5b8d911670a3b62d",
-        "type": "debug",
-        "z": "e28fa44fc2d53852",
-        "name": "debug 39",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 400,
-        "y": 560,
-        "wires": []
     },
     {
         "id": "2d5f1f666daa28f4",
@@ -1014,8 +987,8 @@
         "bot": "22f0b17850916a08",
         "saveDataDir": "",
         "filterCommands": false,
-        "x": 120,
-        "y": 600,
+        "x": 80,
+        "y": 400,
         "wires": [
             [
                 "9df786073a58184d"
@@ -1028,19 +1001,18 @@
         "type": "function",
         "z": "e28fa44fc2d53852",
         "name": "msg",
-        "func": "var text = msg.payload['content'].toUpperCase();\nvar iot = flow.get('iot')[0]['potencia'];\nvar soma = iot['geladeira']['modo_1'] + iot['aquecedor']['modo_1'];\nvar flexa = flow.get('flexa');\nvar temp = flow.get('braganca_temp');\n\nif (text.includes('DESLIGAR') || text.includes('DESLIGA') || text.includes('DESATIVAR') ||\n    text.includes('DESATIVA') || text.includes('INATIVAR') || text.includes('NÃO') ||\n    text.includes(\"NAO\")) {\n    flow.set('ar_status', false);\n\n    msg.payload = {\n        \"type\": \"message\",\n        \"chatId\": 1226680499,\n        \"content\": \"Alexa: seu arcondicionado encontra-se desligado!\"\n    }\n} else if (text.includes('SIM')  || text.includes('LIGAR') || text.includes('LIGA') ||\n    text.includes('ATIVAR') || text.includes('ATIVA') || text.includes('INICIAR') ||\n     text.includes('INICIA')) {\n\n    if (temp < 25) {\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: não foi possível ligar seu ar-condicionado, pois a temperatura está abaixo de 25°C!\"\n        }\n    } else if (flexa < soma) {\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: não foi possível ligar seu ar-condicionado, pois a energia está abaixo do necessário para ligá-lo!\"\n        }\n    } else {\n        flow.set('ar_status', true);\n        flow.set('ar_contador', 0);\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: seu arcondicionado encontra-se ligado!\"\n        }\n        \n    }\n} else {\n    msg.payload = msg.payload = {\n        \"type\": \"message\",\n        \"chatId\": 1226680499,\n        \"content\": \"Alexa: este chat é reservado exclusivamente para o controle de seu AR-CONDICIONADO, utilize palavras em sua frase com os termos'Ligar/Sim' ou 'Desligar/Não' para que possa auxiliá-lo.\",\n    }\n}\n \n\nreturn msg;",
+        "func": "var text = msg.payload['content'].toUpperCase();\nvar iot = flow.get('iot')[0]['potencia'];\nvar soma = iot['geladeira']['modo_1'] + iot['aquecedor']['modo_1'];\nvar flexa = flow.get('flexa');\nvar temp = flow.get('braganca_temp');\n\nvar arCondicionadoValor = flow.get('iot')['0']['potencia']['aquecedor']['modo_1'];\nvar somaEletro = flow.get('somaEletro');\nvar flexa = flow.get('flexa');\nvar somaDecisao = ((flexa - somaEletro) - arCondicionadoValor);\n\n\nif (text.includes('DESLIGAR') || text.includes('DESLIGA') || text.includes('DESATIVAR') ||\n    text.includes('DESATIVA') || text.includes('INATIVAR') || text.includes('NÃO') ||\n    text.includes(\"NAO\")) {\n    flow.set('ar_status', false);\n\n    msg.payload = {\n        \"type\": \"message\",\n        \"chatId\": 1226680499,\n        \"content\": \"Alexa: seu arcondicionado encontra-se desligado!\"\n    }\n} else if (text.includes('SIM')  || text.includes('LIGAR') || text.includes('LIGA') ||\n    text.includes('ATIVAR') || text.includes('ATIVA') || text.includes('INICIAR') ||\n     text.includes('INICIA')) {\n\n    if (temp < 25) {\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: seu ar-condicionado encontra-se desligado, pois a temperatura está abaixo de 25°C!\"\n        }\n    } else if (flexa < soma || somaDecisao <=0) {\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: seu ar-condicionado encontra-se desligado, pois a energia está abaixo do necessário para ligá-lo!\"\n        }\n    } else {\n        //if(flow.get('valueAr') == 0){\n            flow.set('ar_status', true);\n        //}\n        \n        flow.set('ar_contador', 0);\n        msg.payload = {\n            \"type\": \"message\",\n            \"chatId\": 1226680499,\n            \"content\": \"Alexa: seu arcondicionado encontra-se ligado!\"\n        }\n        \n    }\n} else {\n    msg.payload = msg.payload = {\n        \"type\": \"message\",\n        \"chatId\": 1226680499,\n        \"content\": \"Alexa: este chat é reservado exclusivamente para o controle de seu AR-CONDICIONADO, utilize palavras em sua frase com os termos'Ligar/Sim'  ou 'Desligar/Não' para que possa auxiliá-lo.\",\n    }\n}\n \n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 270,
-        "y": 600,
+        "x": 290,
+        "y": 480,
         "wires": [
             [
-                "68a6b105eb60bb9b",
-                "5b8d911670a3b62d"
+                "68a6b105eb60bb9b"
             ]
         ]
     },
@@ -1062,8 +1034,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 370,
-        "y": 260,
+        "x": 412.98062896728516,
+        "y": 218.5096950531006,
         "wires": [
             [
                 "da3aa72aaf6a0888"
@@ -1074,40 +1046,6 @@
         ]
     },
     {
-        "id": "a788eefcc9d97ebb",
-        "type": "function",
-        "z": "e28fa44fc2d53852",
-        "name": "function 3",
-        "func": "msg.payload = {\n    \"Ar-condicionado\": flow.get(\"ar_status\")\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "97f05a0b0f44933c",
-        "type": "debug",
-        "z": "e28fa44fc2d53852",
-        "name": "debug 40",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 980,
-        "y": 200,
-        "wires": []
-    },
-    {
         "id": "68a6b105eb60bb9b",
         "type": "telegram sender",
         "z": "e28fa44fc2d53852",
@@ -1115,25 +1053,7 @@
         "bot": "22f0b17850916a08",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 400,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8ba71514ea1483ce",
-        "type": "function",
-        "z": "e28fa44fc2d53852",
-        "name": "function 4",
-        "func": "var valor_permissao = flow.get('valor_permissao');\nvar value_msg = flow.get('value_msg');\nvar ar_status = flow.get('ar_status');\n\nmsg.payload = {\n    \"text\": \"DEBAIXO\",\n    \"value_msg\": value_msg,\n    \"ar_status\": ar_status,\n    \"valor_permissao\": valor_permissao,\n}\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 200,
+        "x": 300,
         "y": 520,
         "wires": [
             []
@@ -1144,15 +1064,181 @@
         "type": "debug",
         "z": "e28fa44fc2d53852",
         "name": "debug 41",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
+        "x": 540,
         "y": 120,
+        "wires": []
+    },
+    {
+        "id": "378ab154d9729da9",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "aux",
+        "func": "const value = msg.payload['0']['value'];\nconst geladeira = msg.payload['0']['status']['geladeria'];\nconst arcondicionado = msg.payload['0']['status']['aquecedor'];\nconst maquina = msg.payload['0']['status']['maquina'];\nconst forno = msg.payload['0']['status']['forno'];\nconst iot = flow.get('iot');\nconst eletro = iot['0']['potencia'];\nvar soma = 0.0;\n\n//Geladeira\nif (geladeira == 0) {\n    soma += eletro['geladeira']['modo_1'];\n} else if (geladeira == 1) {\n    soma += eletro['geladeira']['modo_2']\n} else if (geladeira == 2) {\n    soma += eletro['geladeira']['modo_3']\n}\n\n// Ar-condicionado\nif (arcondicionado == 1) {\n    soma += eletro['aquecedor']['modo_1'];\n} else if (arcondicionado == 2) {\n    soma += eletro['aquecedor']['modo_2']\n} else if (arcondicionado == 3) {\n    soma += eletro['aquecedor']['modo_3']\n}\n\n// Maquina de Lavar\nif (maquina == 1) {\n    soma += eletro['maquina-lavar']['modo_1'];\n} else if (maquina == 2) {\n    soma += eletro['maquina-lavar']['modo_2']\n} else if (maquina == 3) {\n    soma += eletro['maquina-lavar']['modo_3']\n}\n\n// Forno\nif (forno == 1) {\n    soma += eletro['forno']['modo_1'];\n} else if (forno == 2) {\n    soma += eletro['forno']['modo_2']\n} else if (forno == 3) {\n    soma += eletro['forno']['modo_3']\n}\n\nmsg.payload = {\n    \"value\": value,\n    \"soma\": soma\n}\n\nflow.set('somaEletro',soma);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "50a6aed44a329d72",
+                "7c5c44e50ed8293f"
+            ]
+        ]
+    },
+    {
+        "id": "86e3e7d455040875",
+        "type": "ui_gauge",
+        "z": "e28fa44fc2d53852",
+        "name": "",
+        "group": "3840fa598f8ccd85",
+        "order": 6,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Energia em rede",
+        "label": "Potência (W)",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60000",
+        "colors": [
+            "#eb80f9",
+            "#ba5dc6",
+            "#7c038c"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 450,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c11535d3e5011303",
+        "type": "ui_gauge",
+        "z": "e28fa44fc2d53852",
+        "name": "",
+        "group": "3840fa598f8ccd85",
+        "order": 6,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Energia em consumo",
+        "label": "Potência (W)",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "80000",
+        "colors": [
+            "#00cbe6",
+            "#00e6e2",
+            "#3a57cb"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 460,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "50a6aed44a329d72",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "consumo",
+        "func": "msg.payload = msg.payload['soma'];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 640,
+        "wires": [
+            [
+                "c11535d3e5011303"
+            ]
+        ]
+    },
+    {
+        "id": "7c5c44e50ed8293f",
+        "type": "function",
+        "z": "e28fa44fc2d53852",
+        "name": "rede",
+        "func": "var result = msg.payload['value'] - msg.payload['soma'];\n//msg.payload = (result <= 0 ? 0 : result);\nmsg.payload = result;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 580,
+        "wires": [
+            [
+                "86e3e7d455040875"
+            ]
+        ]
+    },
+    {
+        "id": "7dfbd6ecc5ba7a7b",
+        "type": "debug",
+        "z": "e28fa44fc2d53852",
+        "name": "debug 42",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 140,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "c7cb60dc37b4c4ce",
+        "type": "debug",
+        "z": "e28fa44fc2d53852",
+        "name": "debug 43",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "666aa639be7611cd",
+        "type": "debug",
+        "z": "e28fa44fc2d53852",
+        "name": "debug 44",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 200,
         "wires": []
     },
     {
@@ -1243,6 +1329,17 @@
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": false
+    },
+    {
+        "id": "3840fa598f8ccd85",
+        "type": "ui_group",
+        "name": "Distribuição da energia gerada",
+        "tab": "ab961a46a5f6896a",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "ab961a46a5f6896a",
